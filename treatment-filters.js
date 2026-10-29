@@ -303,7 +303,7 @@
             { className: "tf-cards-grid" },
             filteredTreatments.map((treatment, index) => {
               const isSelected = activeDetailId === treatment.id;
-              const waLink = `https://wa.me/5511900000000?text=${encodeURIComponent(treatment.whatsappMsg)}`;
+              const waLink = `https://wa.me/5511951519098?text=${encodeURIComponent(treatment.whatsappMsg)}`;
               const staggerDelay = Math.min(index * 65, 420);
 
               return React.createElement(
