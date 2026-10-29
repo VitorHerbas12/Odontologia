@@ -35,7 +35,9 @@ function lineY(s, u, layer, frame, shape, band) {
   // twist=false keeps the factor positive, so the ribbon never flips into a second, crossing direction.
   // twist=false: one factor shared by every line and layer, so lines stay parallel and never cross.
   const twist = shape.twist ? c : 0.75 + 0.25 * Math.cos(Math.PI * (u - turn));
-  return center + s * shape.spread * band * twist;
+  // Travelling wave: a crest that rolls along the lines, so the ribbon reads as moving water.
+  const travel = shape.travel * band * Math.sin(Math.PI * 2 * 1.2 * u - t * 1.4 + s * 1.2 + layer.phase);
+  return center + s * shape.spread * band * twist + travel;
 }
 
 function part(x, y, frame, strength) {
@@ -73,7 +75,7 @@ function drawLines(ctx, frame, shape, color) {
         xs[k] = x;
         ys[k] = shape.interactive ? part(x, y, frame, layer.part) : y;
       }
-      ctx.globalAlpha = layer.opacity * (0.45 + 0.55 * (1 - Math.abs(s) * 2));
+      ctx.globalAlpha = Math.min(1, layer.opacity * shape.alpha * (0.45 + 0.55 * (1 - Math.abs(s) * 2)));
       ctx.beginPath();
       ctx.moveTo(xs[0], ys[0]);
       for (let k = 1; k < last; k++) {
@@ -100,6 +102,8 @@ function BackgroundPaths({
   interactive = true,
   mask = true,
   twist = true,
+  travel = 0,
+  alpha = 1,
 }) {
   const rootRef = React.useRef(null);
   const canvasRef = React.useRef(null);
@@ -116,6 +120,8 @@ function BackgroundPaths({
       slope: Math.tan((angle * Math.PI) / 180),
       interactive: interactive && !reduceMotion,
       twist,
+      travel,
+      alpha,
     };
     const perLayer = Math.max(1, Math.round(count / LAYERS.length));
     const total = perLayer * LAYERS.length;
@@ -211,7 +217,7 @@ function BackgroundPaths({
       target.removeEventListener("pointermove", onMove);
       target.removeEventListener("pointerleave", onLeave);
     };
-  }, [count, spread, angle, speed, interactive, twist]);
+  }, [count, spread, angle, speed, interactive, twist, travel, alpha]);
 
   const maskStyle = mask
     ? {
