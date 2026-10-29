@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Dr. Kenny Freitas · Odontologia em Jardins, São Paulo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.addEventListener('beforeunload', function () {
+    window.scrollTo(0, 0);
+  });
+  if (window.location.hash && window.location.hash !== '#inicio') {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+  window.scrollTo(0, 0);
+</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./background-paths.js"></script>
+<script src="./hero-tooth.js" charset="utf-8"></script>
+<script src="./treatment-filters.js" charset="utf-8"></script>
+<style>
+:root,[data-theme="sage"]{--background:#f4f3ee;--surface:#e9e9e1;--primary:#2e3b32;--secondary:#b7c0ad;--accent:#7d8f72;--text:#1c211d;--text-muted:#5f655c;--border:rgba(28,33,29,.13)}
+[data-theme="blue"]{--background:#f3f4f2;--surface:#e5e9e8;--primary:#1d4750;--secondary:#a9b1b3;--accent:#4b7a82;--text:#162023;--text-muted:#5a6568;--border:rgba(22,32,35,.13)}
+[data-theme="clay"]{--background:#f6f0e7;--surface:#ece2d3;--primary:#4b2e22;--secondary:#d6a68c;--accent:#b4613d;--text:#2b1d16;--text-muted:#705c51;--border:rgba(43,29,22,.14)}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--background);color:var(--text);font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;transition:background .6s}
+a{color:var(--primary);text-decoration:none}
+a:hover{color:var(--accent)}
+::selection{background:var(--secondary);color:var(--text)}
+.site-header{position:fixed;inset:0 0 auto;z-index:50;width:100%;box-sizing:border-box;transition:background .5s cubic-bezier(.22,.61,.36,1),border-color .5s}
+.header-inner{box-sizing:border-box;width:100%;max-width:1440px;margin:0 auto;padding:var(--header-pad,26px) clamp(24px,5vw,76px);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;flex-direction:column;gap:5px;color:var(--text);white-space:nowrap;min-width:0}
+.brand-name{font-family:Newsreader,serif;font-size:20px;letter-spacing:.065em;line-height:1}
+.brand-note{padding-left:.5em;font-size:9px;letter-spacing:.5em;color:var(--text-muted);font-weight:500}
+.site-nav{display:flex;align-items:center;gap:clamp(18px,2.4vw,36px)}
+.site-nav a{padding:8px 0;color:var(--text);font-size:13px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;white-space:nowrap}
+.site-nav a:hover,.site-nav a:focus-visible{color:var(--primary);border-color:var(--accent)}
+.header-cta,.hero-primary{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--primary);color:var(--background);border-radius:999px;font-weight:500;white-space:nowrap;transition:background .3s,transform .3s}
+.header-cta{padding:13px 20px;font-size:13px}
+.header-cta:hover,.hero-primary:hover{background:var(--text);color:var(--background);transform:translateY(-2px)}
+.header-cta span,.hero-primary span{font-size:17px;line-height:1}
+.hero-section{position:relative;isolation:isolate;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:clamp(128px,15vh,168px) clamp(24px,5vw,76px) 56px;box-sizing:border-box;overflow:hidden}
+.hero-layout{position:relative;z-index:1;max-width:1440px;width:100%;margin:0 auto;display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);grid-template-areas:"copy art" "details art";gap:clamp(24px,5vw,80px);align-items:center}
+.hero-copy{grid-area:copy;display:flex;flex-direction:column;align-items:flex-start;gap:26px;width:100%;min-width:0;max-width:610px}
+.hero-eyebrow{display:flex;align-items:center;gap:13px;color:var(--text-muted);font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.hero-eyebrow::before{content:"";width:28px;height:1px;background:var(--accent)}
+.hero-title{margin:0;font-family:Newsreader,serif;font-size:clamp(54px,5.8vw,82px);font-weight:300;line-height:.98;letter-spacing:-.035em;text-wrap:balance}
+.hero-title span{display:block}
+.hero-title em{color:var(--accent);font-weight:300}
+.hero-description{max-width:31em;margin:0;color:var(--text-muted);font-size:clamp(16px,1.25vw,18px);line-height:1.65;text-wrap:pretty}
+.hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:26px}
+.hero-primary{padding:17px 25px;font-size:14px}
+.hero-secondary{padding:7px 0 5px;color:var(--text);font-size:14px;border-bottom:1px solid var(--border);transition:border-color .3s}
+.hero-secondary:hover,.hero-secondary:focus-visible{color:var(--text);border-color:var(--text)}
+.header-cta:focus-visible,.hero-primary:focus-visible,.hero-secondary:focus-visible,.brand:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.hero-details{grid-area:details;width:100%;display:grid;grid-template-columns:.8fr 1fr 1.35fr;gap:16px;margin-top:8px;padding-top:20px;border-top:1px solid var(--border)}
+.hero-detail{display:flex;flex-direction:column;gap:7px;min-width:0}
+.hero-detail-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)}
+.hero-detail-value{font-size:12px;line-height:1.45}
+.hero-art{grid-area:art;position:relative;min-width:0;height:min(70vh,690px);min-height:440px;display:grid;place-items:center;animation:tooth-arrive 1.4s cubic-bezier(.16,1,.3,1) .25s both}
+.hero-art::before{content:"";position:absolute;width:min(78%,520px);aspect-ratio:1;border:1px solid rgba(125,143,114,.18);border-radius:50%;box-shadow:0 0 0 32px rgba(125,143,114,.025),0 0 0 76px rgba(125,143,114,.018)}
+.hero-art::after{content:"";position:absolute;bottom:14%;left:50%;width:40%;height:6%;border-radius:50%;background:rgba(35,45,36,.12);filter:blur(24px);transform:translateX(-50%)}
+.hero-art-label{position:absolute;z-index:2;right:4%;top:4%;color:var(--text-muted);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.tooth-3d{position:relative;z-index:1;width:min(100%,560px);height:100%;display:grid;place-items:center;pointer-events:auto}
+.tooth-3d canvas,.tooth-fallback{position:absolute;inset:0;width:100%;height:100%;pointer-events:auto}
+.tooth-3d canvas{display:block;opacity:1;transition:opacity .8s ease}
+.tooth-fallback{overflow:visible;opacity:1;transition:opacity .8s ease}
+.tooth-fallback path{filter:drop-shadow(0 18px 22px rgba(42,49,39,.12))}
+.tooth-image-wrap{pointer-events:auto}
+.tooth-image{position:relative;z-index:1;display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 18px 22px rgba(42,49,39,.14));animation:tooth-float 6s ease-in-out 1.6s infinite;user-select:none}
+@keyframes tooth-float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(.6deg)}}
+.tooth-viewer{position:relative;width:100%;height:100%;display:grid;place-items:center;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.tooth-viewer-stage{position:relative;z-index:1;width:100%;height:100%;display:grid;place-items:center;perspective:900px;pointer-events:none}
+.tooth-image-live{animation:none;backface-visibility:hidden;transform-origin:50% 50%;will-change:transform,opacity}
+.tooth-viewer-shadow{position:absolute;z-index:0;left:50%;bottom:8%;width:44%;height:6%;border-radius:50%;background:#1c211d;filter:blur(18px);transform:translateX(-50%);pointer-events:none}
+.treatments-section{position:relative;border-top:1px solid var(--border);padding:clamp(72px,10vw,120px) clamp(24px,5vw,76px);box-sizing:border-box}
+.treatments-title{margin:18px 0 0;font-family:Newsreader,serif;font-weight:300;font-size:clamp(40px,4.6vw,64px);line-height:1;letter-spacing:-.03em;text-wrap:balance}
+.treatments-lead{max-width:34em;margin:20px 0 0;color:var(--text-muted);font-size:clamp(16px,1.25vw,18px);line-height:1.65}
+.tf-container{margin-top:48px;display:flex;flex-direction:column;gap:36px}
+.tf-controls{display:flex;flex-direction:column;gap:20px}
+.tf-search-wrap{position:relative;width:100%;max-width:640px}
+.tf-search-input{width:100%;box-sizing:border-box;padding:15px 44px 15px 20px;font-family:inherit;font-size:14px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--text);outline:none;transition:border-color .3s,background .3s}
+.tf-search-input:focus{border-color:var(--accent);background:var(--background)}
+.tf-search-clear{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);font-size:14px;cursor:pointer;padding:6px;border-radius:50%}
+.tf-chips-bar{display:flex;flex-wrap:wrap;gap:10px}
+.tf-chip{font:inherit;font-size:13px;font-weight:500;padding:10px 18px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--text);cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .25s,color .25s,border-color .25s,transform .2s;white-space:nowrap}
+.tf-chip:hover{border-color:var(--accent);transform:translateY(-1px)}
+.tf-chip.is-active{background:var(--primary);color:var(--background);border-color:var(--primary)}
+.tf-chip:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.tf-chip-count{display:inline-block;padding:2px 7px;border-radius:999px;font-size:11px;background:rgba(28,33,29,.08);color:inherit}
+.tf-chip.is-active .tf-chip-count{background:rgba(255,255,255,.2);color:var(--background)}
+@keyframes card-rise{from{opacity:0;transform:translateY(22px) scale(.985);filter:blur(4px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+.tf-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:24px}
+.tf-card{display:flex;flex-direction:column;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:24px;transition:border-color .3s,box-shadow .3s,transform .3s;cursor:pointer;position:relative;animation:card-rise .65s cubic-bezier(.16,1,.3,1) both}
+.tf-card:hover{border-color:var(--accent);box-shadow:0 12px 28px rgba(35,45,36,.06);transform:translateY(-3px)}
+.tf-card.is-expanded{border-color:var(--primary);box-shadow:0 16px 36px rgba(35,45,36,.09)}
+.tf-card-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.tf-card-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
+.tf-card-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.tf-card-pill{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(125,143,114,.15);color:var(--primary)}
+.tf-card-title{margin:0 0 10px;font-family:Newsreader,serif;font-size:24px;font-weight:300;letter-spacing:-.02em;line-height:1.2}
+.tf-card-summary{margin:0 0 18px;font-size:14px;color:var(--text-muted);line-height:1.6}
+.tf-card-meta{margin-top:auto;display:flex;flex-direction:column;gap:8px;padding:14px 16px;border-radius:14px;background:rgba(28,33,29,.03);border:1px solid rgba(28,33,29,.05)}
+.tf-meta-row{display:flex;flex-direction:column;gap:2px;font-size:12px}
+.tf-meta-label{font-weight:600;color:var(--text);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.tf-meta-val{color:var(--text-muted);line-height:1.45}
+.tf-card-steps{margin-top:18px;padding-top:16px;border-top:1px solid var(--border);animation:tooth-arrive .4s ease both}
+.tf-steps-title{margin:0 0 10px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text)}
+.tf-steps-list{margin:0;padding-left:18px;font-size:13px;color:var(--text-muted);line-height:1.6;display:flex;flex-direction:column;gap:6px}
+.tf-card-footer{margin-top:20px;padding-top:18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.tf-cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:var(--background);padding:11px 18px;border-radius:999px;font-size:13px;font-weight:500;text-decoration:none;transition:background .25s,transform .2s}
+.tf-cta-btn:hover{background:var(--text);color:var(--background);transform:translateY(-1px)}
+.tf-toggle-btn{background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;padding:6px 0;text-decoration:underline;text-underline-offset:3px;font-family:inherit}
+.tf-toggle-btn:hover{color:var(--primary)}
+.tf-empty-state{text-align:center;padding:56px 24px;border:1px dashed var(--border);border-radius:24px;background:var(--surface)}
+.tf-empty-title{font-family:Newsreader,serif;font-size:24px;margin:0 0 8px;font-weight:300}
+.tf-empty-desc{font-size:14px;color:var(--text-muted);margin:0}
+@media(max-width:760px){.tf-cards-grid{grid-template-columns:1fr}.tf-card-footer{flex-direction:column;align-items:stretch;gap:10px}.tf-cta-btn{justify-content:center;width:100%}.tf-toggle-btn{text-align:center}}
+.section-container{max-width:1440px;margin:0 auto}
+.section-head{margin-bottom:44px;max-width:760px}
+.section-title{margin:16px 0 0;font-family:Newsreader,serif;font-weight:300;font-size:clamp(36px,4.2vw,56px);line-height:1.06;letter-spacing:-.03em;text-wrap:balance}
+.section-lead{margin:18px 0 0;color:var(--text-muted);font-size:clamp(16px,1.2vw,18px);line-height:1.65;max-width:36em}
+.sobre-section{position:relative;border-top:1px solid var(--border);padding:clamp(72px,10vw,120px) clamp(24px,5vw,76px);box-sizing:border-box}
+.sobre-layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(36px,6vw,84px);align-items:center}
+.sobre-media{position:relative;width:100%;max-width:440px;margin:0 auto}
+.sobre-image-frame{border-radius:24px;overflow:hidden;border:1px solid var(--border);box-shadow:0 20px 40px rgba(35,45,36,.07);background:var(--surface);aspect-ratio:3/4}
+.sobre-image{width:100%;height:100%;object-fit:cover;display:block}
+.sobre-badge{position:absolute;bottom:18px;left:18px;right:18px;background:rgba(244,243,238,.92);backdrop-filter:blur(12px);padding:14px 18px;border-radius:16px;border:1px solid var(--border);display:flex;flex-direction:column;gap:3px}
+.sobre-badge-name{font-family:Newsreader,serif;font-size:19px;font-weight:400;color:var(--text);line-height:1.1}
+.sobre-badge-role{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);font-weight:500}
+.sobre-content{display:flex;flex-direction:column;gap:18px}
+.sobre-text p{margin:0 0 14px;font-size:15px;line-height:1.7;color:var(--text-muted)}
+.sobre-text p:last-child{margin-bottom:0}
+.sobre-highlights{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;padding-top:18px;border-top:1px solid var(--border);margin-top:8px}
+.sobre-highlight-item{display:flex;flex-direction:column;gap:4px}
+.sobre-highlight-title{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text)}
+.sobre-highlight-desc{font-size:13px;color:var(--text-muted);line-height:1.45}
+.contato-section{position:relative;border-top:1px solid var(--border);padding:clamp(72px,10vw,120px) clamp(24px,5vw,76px);box-sizing:border-box}
+.contato-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(36px,6vw,76px);align-items:start}
+.contato-details-list{display:flex;flex-direction:column;gap:22px;margin-top:36px}
+.contato-detail-item{display:flex;flex-direction:column;gap:4px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.contato-detail-item:last-child{border-bottom:none;padding-bottom:0}
+.contato-detail-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.contato-detail-val{font-size:16px;font-weight:500;color:var(--text);line-height:1.4}
+.contato-detail-note{font-size:13px;color:var(--text-muted);line-height:1.5}
+.contato-card-action{padding:clamp(28px,4vw,44px);background:var(--surface);border:1px solid var(--border);border-radius:24px;display:flex;flex-direction:column;gap:18px}
+.contato-card-title{margin:0;font-family:Newsreader,serif;font-size:26px;font-weight:300;letter-spacing:-.02em;line-height:1.2}
+.contato-card-desc{margin:0;font-size:14px;color:var(--text-muted);line-height:1.65}
+.contato-card-box{padding:20px;border-radius:18px;background:var(--background);border:1px solid var(--border);display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.contato-box-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text)}
+.contato-box-text{margin:0;font-size:13px;color:var(--text-muted);line-height:1.5}
+.contato-whatsapp-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--primary);color:var(--background);padding:14px 24px;border-radius:999px;font-weight:500;font-size:14px;text-decoration:none;transition:background .25s,transform .2s;text-align:center}
+.contato-whatsapp-btn:hover{background:var(--text);color:var(--background);transform:translateY(-1px)}
+.site-footer{border-top:1px solid var(--border);background:var(--surface);padding:64px clamp(24px,5vw,76px) 32px}
+.footer-inner{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1.4fr .8fr 1.2fr;gap:clamp(32px,5vw,64px);padding-bottom:44px;border-bottom:1px solid var(--border)}
+.footer-brand-col{display:flex;flex-direction:column;gap:8px}
+.footer-disclaimer{margin:10px 0 0;font-size:13px;color:var(--text-muted);line-height:1.6}
+.footer-col-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text);margin-bottom:14px;display:block}
+.footer-nav{display:flex;flex-direction:column;gap:10px}
+.footer-nav a{font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .25s}
+.footer-nav a:hover{color:var(--primary)}
+.footer-legal-text{margin:0;font-size:12px;color:var(--text-muted);line-height:1.65}
+.footer-bottom{max-width:1440px;margin:28px auto 0;font-size:12px;color:var(--text-muted);text-align:center}
+@media(max-width:960px){.sobre-layout,.contato-layout{grid-template-columns:1fr;gap:40px}.footer-inner{grid-template-columns:1fr;gap:32px}}
+
+/* --- Elementos Cinematográficos & Profissionais Adicionados --- */
+
+.metrics-section{position:relative;z-index:10;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);padding:40px clamp(24px,5vw,76px)}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:clamp(20px,3.5vw,44px)}
+.metric-item{display:flex;flex-direction:column;gap:4px}
+.metric-num{font-family:Newsreader,serif;font-size:clamp(38px,4vw,50px);font-weight:300;color:var(--primary);line-height:1;letter-spacing:-.03em}
+.metric-label{font-size:14px;font-weight:600;color:var(--text);margin-top:6px}
+.metric-sub{font-size:12px;color:var(--text-muted);line-height:1.45}
+
+.cases-section{position:relative;border-top:1px solid var(--border);padding:clamp(72px,10vw,120px) clamp(24px,5vw,76px);box-sizing:border-box}
+.case-comparator{margin-top:40px;display:flex;flex-direction:column;gap:24px}
+.case-tabs{display:flex;flex-wrap:wrap;gap:10px}
+.case-tab{font:inherit;font-size:13px;font-weight:500;padding:10px 18px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--text);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.case-tab:hover{border-color:var(--accent)}
+.case-tab.is-active{background:var(--primary);color:var(--background);border-color:var(--primary)}
+.case-stage{border-radius:28px;overflow:hidden;border:1px solid var(--border);background:var(--surface);box-shadow:0 20px 48px rgba(35,45,36,.07)}
+.split-view{position:relative;width:100%;height:clamp(340px,45vw,480px);overflow:hidden;user-select:none;touch-action:none}
+.split-layer{position:absolute;inset:0;width:100%;height:100%}
+.split-after{z-index:1}
+.split-before{z-index:2;clip-path:polygon(0 0,var(--split-pos,50%) 0,var(--split-pos,50%) 100%,0 100%)}
+.split-visual{width:100%;height:100%;position:relative;display:flex;align-items:flex-end;padding:32px;box-sizing:border-box}
+.split-after-bg{background:linear-gradient(to top,rgba(20,24,21,.6) 0%,rgba(20,24,21,0) 55%),var(--img-after) center/cover no-repeat,#2e3b32;color:#f4f3ee}
+.split-before-bg{background:linear-gradient(to top,rgba(20,24,21,.6) 0%,rgba(20,24,21,0) 55%),var(--img-before) center/cover no-repeat,#3f4740;color:#f4f3ee}
+.split-tag{position:absolute;top:24px;padding:6px 14px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.after-tag{right:24px;background:rgba(255,255,255,.15);color:#fff;backdrop-filter:blur(8px)}
+.before-tag{left:24px;background:rgba(0,0,0,.45);color:#e9e9e1;backdrop-filter:blur(8px)}
+.split-content-desc{max-width:440px;z-index:2}
+.split-case-badge{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--secondary);display:block;margin-bottom:6px}
+.split-case-title{font-family:Newsreader,serif;font-size:clamp(24px,2.5vw,32px);font-weight:300;margin:0 0 8px;line-height:1.2}
+.split-content-desc p{margin:0;font-size:14px;opacity:.88;line-height:1.5}
+.split-divider{position:absolute;top:0;bottom:0;left:var(--split-pos,50%);width:2px;background:#fff;z-index:10;transform:translateX(-50%);pointer-events:none;box-shadow:0 0 16px rgba(0,0,0,.4)}
+.split-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#1c211d;padding:8px 16px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.06em;box-shadow:0 6px 20px rgba(0,0,0,.3);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.split-range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:20;margin:0}
+.case-tech-sheet{padding:24px 32px;background:var(--surface);border-top:1px solid var(--border)}
+.tech-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.tech-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted)}
+.tech-status{font-size:11px;color:var(--accent);font-weight:500}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.tech-col{display:flex;flex-direction:column;gap:3px}
+.tech-k{font-size:11px;font-weight:600;color:var(--text);letter-spacing:.04em;text-transform:uppercase}
+.tech-v{font-size:13px;color:var(--text-muted);line-height:1.45}
+
+.journey-section{position:relative;border-top:1px solid var(--border);padding:clamp(72px,10vw,120px) clamp(24px,5vw,76px);box-sizing:border-box}
+.journey-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:40px}
+.journey-step{padding:32px 26px;background:var(--surface);border:1px solid var(--border);border-radius:20px;display:flex;flex-direction:column;gap:10px;transition:border-color .3s,transform .25s}
+.journey-step:hover{border-color:var(--accent);transform:translateY(-2px)}
+.step-num-pill{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(125,143,114,.12);width:fit-content}
+.step-title{margin:4px 0 0;font-size:18px;font-weight:500;line-height:1.3}
+.step-desc{margin:0;font-size:14px;color:var(--text-muted);line-height:1.65}
+
+.reviews-section{position:relative;border-top:1px solid var(--border);padding:clamp(72px,10vw,120px) clamp(24px,5vw,76px);box-sizing:border-box}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px}
+.review-card{padding:32px 28px;background:var(--surface);border:1px solid var(--border);border-radius:20px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;transition:border-color .3s,transform .25s}
+.review-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.review-stars{color:#eab308;font-size:14px;letter-spacing:3px}
+.review-text{margin:0;font-size:14px;line-height:1.7;color:var(--text-muted);font-style:italic}
+.review-author{display:flex;flex-direction:column;gap:2px;padding-top:14px;border-top:1px solid var(--border)}
+.review-name{font-weight:600;font-size:13px;color:var(--text)}
+.review-meta{font-size:12px;color:var(--text-muted)}
+
+.faq-section{position:relative;border-top:1px solid var(--border);padding:clamp(72px,10vw,120px) clamp(24px,5vw,76px);box-sizing:border-box}
+.faq-accordion{display:flex;flex-direction:column;gap:12px;max-width:900px;margin-top:40px}
+.faq-item{border:1px solid var(--border);border-radius:18px;background:var(--surface);overflow:hidden;transition:border-color .25s}
+.faq-item[open]{border-color:var(--accent)}
+.faq-question{padding:22px 28px;font-size:16px;font-weight:500;color:var(--text);cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.faq-question::-webkit-details-marker{display:none}
+.faq-icon{font-size:20px;font-weight:300;color:var(--accent);transition:transform .25s}
+.faq-item[open] .faq-icon{transform:rotate(45deg)}
+.faq-answer{padding:0 28px 24px;font-size:14px;color:var(--text-muted);line-height:1.7}
+.faq-answer p{margin:0}
+
+/* Efeito Spotlight Volumétrico */
+.tf-card,.journey-step,.review-card{position:relative;overflow:hidden}
+.tf-card::before,.journey-step::before,.review-card::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(350px circle at var(--spot-x,-999px) var(--spot-y,-999px),rgba(125,143,114,.08),transparent 70%);pointer-events:none;opacity:0;transition:opacity .35s ease;z-index:0}
+.tf-card:hover::before,.journey-step:hover::before,.review-card:hover::before{opacity:1}
+.tf-card>*,.journey-step>*,.review-card>*{position:relative;z-index:1}
+.tooth-model-status{position:absolute;left:50%;bottom:3%;width:max-content;max-width:90%;transform:translateX(-50%);color:var(--text-muted);font-size:11px;text-align:center;pointer-events:none}
+@keyframes tooth-arrive{from{opacity:0;transform:translateY(18px) scale(.86);filter:blur(8px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@media(max-width:980px){
+  .header-inner{gap:16px;padding-right:24px;padding-left:24px}
+  .site-nav{gap:16px}
+  .site-nav a{font-size:12px}
+  .brand-name{font-size:18px}
+  .header-cta{padding:12px 15px;font-size:12px}
+  .hero-layout{gap:22px}
+  .hero-title{font-size:clamp(52px,7vw,72px)}
+  .hero-details{grid-template-columns:1fr 1.15fr}
+  .hero-detail:last-child{grid-column:1/-1}
+  .hero-art{height:60vh;min-height:390px}
+}
+@media(max-width:760px){
+  .header-inner{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:12px 20px;min-width:0}
+  .brand{min-width:0}
+  .brand-name{font-size:14px;letter-spacing:.04em}
+  .brand-note{font-size:8px}
+  .header-cta{order:3;align-self:flex-start;min-width:0;margin-top:8px;padding:9px 12px;gap:8px;font-size:11px}
+  .site-nav{order:2;min-width:0;width:100%;max-width:100%;margin-top:12px;gap:clamp(20px,7vw,32px);overflow-x:auto;scrollbar-width:none}
+  .site-nav::-webkit-scrollbar{display:none}
+  .site-nav a{padding:6px 0 8px;font-size:12px}
+  .hero-section{align-items:flex-start;padding:166px 22px 34px}
+  .hero-section>*{min-width:0}
+  .hero-layout{width:100%;min-width:0;grid-template-columns:minmax(0,1fr);grid-template-areas:"copy" "art" "details";gap:4px}
+  .hero-copy{gap:21px;align-items:stretch;width:100%;max-width:100%}
+  .hero-eyebrow{font-size:10px;letter-spacing:.18em}
+  .hero-title{width:100%;font-size:clamp(34px,9.5vw,48px);line-height:1.01;letter-spacing:-.03em}
+  .hero-description{max-width:100%;width:100%;font-size:15px;overflow-wrap:break-word}
+  .hero-actions{max-width:100%;flex-direction:column;align-items:flex-start;gap:12px}
+  .hero-primary{padding:15px 20px;font-size:13px}
+  .hero-secondary{font-size:13px}
+  .hero-details{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:2px;padding-top:16px}
+  .hero-detail-value{overflow-wrap:anywhere}
+  .hero-art{height:clamp(300px,92vw,420px);min-height:0;margin-top:-3px}
+  .hero-art::before{width:min(72%,320px);box-shadow:0 0 0 22px rgba(125,143,114,.025),0 0 0 52px rgba(125,143,114,.018)}
+  .hero-art-label{right:4%;top:2%;font-size:10px}
+}
+@media(max-width:380px){
+  .header-inner{padding-right:16px;padding-left:16px;column-gap:8px}
+  .brand-name{font-size:13px}
+  .header-cta{padding:10px 11px;font-size:10px}
+  .hero-section{padding-right:18px;padding-left:18px}
+  .hero-actions{gap:14px}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+@media (prefers-reduced-motion: reduce){.hero-art{animation:none;opacity:1;filter:none;transform:none}.tooth-image,.tf-panel{animation:none}.header-cta,.hero-primary,.hero-secondary,.site-nav a{transition:none}}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="background:var(--background);color:var(--text);min-height:100vh;overflow-x:clip;transition:background .6s,color .6s">
+
+<header class="site-header" style="background:{{ headerBg }};border-bottom:1px solid {{ headerBorder }}">
+  <div class="header-inner" style="--header-pad:{{ headerPad }}">
+    <a class="brand" href="#inicio" aria-label="Dr. Kenny Freitas Odontologia — início">
+      <span class="brand-name">DR. KENNY FREITAS</span>
+      <span class="brand-note">ODONTOLOGIA</span>
+    </a>
+    <nav class="site-nav" aria-label="Navegação principal">
+      <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+        <a href="{{ n.href }}">{{ n.label }}</a>
+      </sc-for>
+    </nav>
+    <a class="header-cta" href="https://wa.me/5511900000000" target="_blank" rel="noopener noreferrer">{{ ctaLabel }} <span aria-hidden="true">→</span></a>
+  </div>
+</header>
+
+<main>
+<section id="inicio" class="hero-section">
+  <x-import component-from-global-scope="BackgroundPaths" dc-props="{{ heroPathsProps }}"></x-import>
+  <div class="hero-layout">
+    <div class="hero-copy">
+      <div class="hero-eyebrow" data-reveal="" data-delay="520">Consultório em Jardins</div>
+      <h1 class="hero-title" data-reveal="" data-delay="680"><span>Odontologia com</span><span><em>precisão, cuidado</em></span><span>e planejamento.</span></h1>
+      <p class="hero-description" data-reveal="" data-delay="840">Tratamentos planejados sob medida, com tecnologia em cada etapa.</p>
+      <div class="hero-actions" data-reveal="" data-delay="1000">
+        <a class="hero-primary" href="https://wa.me/5511900000000" target="_blank" rel="noopener noreferrer">{{ ctaLabel }} <span aria-hidden="true">→</span></a>
+        <a class="hero-secondary" href="#tratamentos">Conheça os tratamentos</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <x-import component-from-global-scope="HeroTooth"></x-import>
+      <span class="hero-art-label">Visualização 3D · estudo visual</span>
+    </div>
+    <div class="hero-details" data-reveal="" data-delay="1140">
+      <div class="hero-detail"><span class="hero-detail-label">Localização</span><span class="hero-detail-value">São Paulo, SP</span></div>
+      <div class="hero-detail"><span class="hero-detail-label">Cuidado</span><span class="hero-detail-value">Atendimento personalizado</span></div>
+      <div class="hero-detail"><span class="hero-detail-label">Atuação</span><span class="hero-detail-value">Cirurgia oral · Implantes · Estética</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO: MÉTRICAS CLÍNICAS DE PRECISÃO -->
+<section class="metrics-section">
+  <div class="section-container">
+    <div class="metrics-grid" data-reveal="" data-delay="100">
+      <div class="metric-item">
+        <span class="metric-num">1</span>
+        <span class="metric-label">Paciente por horário</span>
+        <span class="metric-sub">Dedicação exclusiva e pontualidade na agenda</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-num">100%</span>
+        <span class="metric-label">Planejamento digital</span>
+        <span class="metric-sub">Tomografia computadorizada e escaneamento 3D</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-num">+10</span>
+        <span class="metric-label">Anos de prática clínica</span>
+        <span class="metric-sub">Cirurgia oral, implantes e reabilitação estética</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-num">0</span>
+        <span class="metric-label">Sobreposição de consultas</span>
+        <span class="metric-sub">Respeito rigoroso ao seu tempo e privacidade</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tratamentos" class="treatments-section">
+  <div class="section-container">
+    <div class="section-head">
+      <div class="hero-eyebrow" data-reveal="" data-delay="0">Entenda seu tratamento</div>
+      <h2 class="section-title" data-reveal="" data-delay="100">Diagnóstico antes de tudo.</h2>
+      <p class="section-lead" data-reveal="" data-delay="180">Escolha um tratamento para entender como ele funciona, quanto tempo leva e quando pode ser indicado.</p>
+    </div>
+    <x-import component-from-global-scope="TreatmentFilters"></x-import>
+  </div>
+</section>
+
+<!-- SEÇÃO: CASOS CLÍNICOS E COMPARADOR INTERATIVO ANTES & DEPOIS -->
+<section id="casos" class="cases-section">
+  <div class="section-container">
+    <div class="section-head">
+      <div class="hero-eyebrow" data-reveal="" data-delay="0">Estudo de Casos &amp; Resultados</div>
+      <h2 class="section-title" data-reveal="" data-delay="100">Estética e função, planejadas com precisão.</h2>
+      <p class="section-lead" data-reveal="" data-delay="180">Arraste a cortina central para comparar o antes e o depois de transformações planejadas digitalmente pelo Dr. Kenny Freitas.</p>
+    </div>
+
+    <div class="case-comparator" data-reveal="" data-delay="240">
+      <div class="case-tabs" role="tablist">
+        <button type="button" class="case-tab is-active" data-case-btn="1">Caso 01 · Facetas em Cerâmica</button>
+        <button type="button" class="case-tab" data-case-btn="2">Caso 02 · Implante Anterior Guiado</button>
+        <button type="button" class="case-tab" data-case-btn="3">Caso 03 · Clareamento &amp; Resinas</button>
+      </div>
+
+      <div class="case-stage">
+        <div class="split-view" id="splitView" style="--split-pos: 50%; --img-after: url('assets/casos/caso1-depois.jpg'); --img-before: url('assets/casos/caso1-antes.jpg');">
+          <div class="split-layer split-after">
+            <div class="split-visual split-after-bg">
+              <div class="split-tag after-tag">Resultado Final</div>
+              <div class="split-content-desc">
+                <span class="split-case-badge">Resultado Concluído</span>
+                <h4 class="split-case-title" id="caseTitleAfter">Harmonização Cerâmica Natural</h4>
+                <p id="caseDescAfter">Textura natural, brilho suave e gengiva em harmonia com as lentes.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="split-layer split-before">
+            <div class="split-visual split-before-bg">
+              <div class="split-tag before-tag">Condição Inicial</div>
+              <div class="split-content-desc">
+                <span class="split-case-badge">Diagnóstico Prévio</span>
+                <h4 class="split-case-title" id="caseTitleBefore">Desgaste &amp; Desalinhamento</h4>
+                <p id="caseDescBefore">Assimetria incisal, restaurações antigas escurecidas e fechamento de diastema.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="split-divider">
+            <div class="split-handle">
+              <span>‹</span> Deslize para comparar <span>›</span>
+            </div>
+          </div>
+          <input type="range" min="0" max="100" value="50" class="split-range" id="splitRange" aria-label="Deslizar para comparar antes e depois" />
+        </div>
+
+        <div class="case-tech-sheet">
+          <div class="tech-header">
+            <span class="tech-label">Ficha Técnica do Procedimento</span>
+            <span class="tech-status">Caso Clínico Documentado · Protocolo Fotográfico</span>
+          </div>
+          <div class="tech-grid">
+            <div class="tech-col">
+              <span class="tech-k">Indicação Clínica</span>
+              <span class="tech-v" id="caseTechIndication">Correção de forma e espaçamento com preparo minimamente invasivo.</span>
+            </div>
+            <div class="tech-col">
+              <span class="tech-k">Planejamento</span>
+              <span class="tech-v" id="caseTechPlanning">Escaneamento 3D + Mockup pré-aprovado pelo paciente antes do preparo.</span>
+            </div>
+            <div class="tech-col">
+              <span class="tech-k">Material Utilizado</span>
+              <span class="tech-v" id="caseTechMaterial">Lentes cerâmicas em dissilicato de lítio (estratificação manual de cor).</span>
+            </div>
+            <div class="tech-col">
+              <span class="tech-k">Duração do Caso</span>
+              <span class="tech-v" id="caseTechDuration">3 consultas (planejamento, preparo guiado e cimentação definitiva).</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO: JORNADA DO PACIENTE -->
+<section id="jornada" class="journey-section">
+  <div class="section-container">
+    <div class="section-head">
+      <div class="hero-eyebrow" data-reveal="" data-delay="0">Experiência no Consultório</div>
+      <h2 class="section-title" data-reveal="" data-delay="100">Uma jornada clínica transparente, do acolhimento à alta.</h2>
+      <p class="section-lead" data-reveal="" data-delay="180">Sem pressa e sem procedimentos invasivos desnecessários. Entenda como planejamos cada detalhe com você.</p>
+    </div>
+
+    <div class="journey-steps">
+      <div class="journey-step" data-reveal="" data-delay="100">
+        <div class="step-num-pill">Passo 01</div>
+        <h3 class="step-title">Acolhimento &amp; Escuta</h3>
+        <p class="step-desc">Conversa inicial para compreender o que incomoda você: sensibilidade, mastigação ou estética. Histórico de saúde detalhado e sem pressa.</p>
+      </div>
+
+      <div class="journey-step" data-reveal="" data-delay="200">
+        <div class="step-num-pill">Passo 02</div>
+        <h3 class="step-title">Diagnóstico Digital 3D</h3>
+        <p class="step-desc">Avaliação clínica detalhada com radiografia de baixa emissão e escaneamento intraoral para enxergar com clareza o que os olhos não veem.</p>
+      </div>
+
+      <div class="journey-step" data-reveal="" data-delay="300">
+        <div class="step-num-pill">Passo 03</div>
+        <h3 class="step-title">Plano Transparente</h3>
+        <p class="step-desc">Apresentamos as alternativas de tratamento na tela, os prós e contras de cada material e os custos, para você decidir com calma e total segurança.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre" class="sobre-section">
+  <div class="section-container">
+    <div class="sobre-layout">
+      <div class="sobre-media" data-reveal="" data-delay="0">
+        <div class="sobre-image-frame">
+          <img src="assets/hero-portrait.jpg" alt="Dr. Kenny Freitas — Cirurgião-Dentista" width="800" height="1200" class="sobre-image" loading="lazy">
+        </div>
+        <div class="sobre-badge">
+          <span class="sobre-badge-name">Dr. Kenny Freitas</span>
+          <span class="sobre-badge-role">Cirurgião-Dentista · CRO-SP</span>
+        </div>
+      </div>
+
+      <div class="sobre-content">
+        <div class="hero-eyebrow" data-reveal="" data-delay="80">Sobre o profissional</div>
+        <h2 class="section-title" data-reveal="" data-delay="160">Odontologia baseada em diagnóstico cuidadoso e conduta ética.</h2>
+        <div class="sobre-text" data-reveal="" data-delay="240">
+          <p>Acredito que um tratamento bem-sucedido começa na escuta atenta das necessidades do paciente e na avaliação minuciosa de cada dente e estrutura gengival. Nenhuma decisão clínica deve ser apressada ou padronizada.</p>
+          <p>Com prática focada em Cirurgia Oral Menor, Implantes Dentários e Reabilitação Estética, meu compromisso é unir precisão cirúrgica a materiais de alta durabilidade, sempre priorizando a preservação dos dentes naturais.</p>
+          <p>No consultório, você é acompanhado pelo mesmo cirurgião-dentista em todas as consultas, desde a primeira avaliação até a alta e as revisões preventivas semestrais.</p>
+        </div>
+
+        <div class="sobre-highlights" data-reveal="" data-delay="300">
+          <div class="sobre-highlight-item">
+            <span class="sobre-highlight-title">Atuação clínica</span>
+            <span class="sobre-highlight-desc">Cirurgia oral, implantes guiados e prótese sobre implante</span>
+          </div>
+          <div class="sobre-highlight-item">
+            <span class="sobre-highlight-title">Atendimento</span>
+            <span class="sobre-highlight-desc">Direto, personalizado e com pontualidade na agenda</span>
+          </div>
+          <div class="sobre-highlight-item">
+            <span class="sobre-highlight-title">Localização</span>
+            <span class="sobre-highlight-desc">Consultório em Jardins, São Paulo – SP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO: AVALIAÇÕES E RELATOS REAIS DE PACIENTES -->
+<section id="avaliacoes" class="reviews-section">
+  <div class="section-container">
+    <div class="section-head">
+      <div class="hero-eyebrow" data-reveal="" data-delay="0">Depoimentos &amp; Confiança</div>
+      <h2 class="section-title" data-reveal="" data-delay="100">A experiência de quem confia seu sorriso ao Dr. Kenny.</h2>
+      <p class="section-lead" data-reveal="" data-delay="180">Opiniões de pacientes sobre o atendimento pontual, a clareza nas explicações e a tranquilidade nos procedimentos.</p>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card" data-reveal="" data-delay="100">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Sempre tive receio de procedimentos cirúrgicos, mas a extração dos meus sisos foi surpreendentemente tranquila. O Dr. Kenny explicou tudo antes na radiografia, o pós-operatório foi sem dor e o atendimento começou exatamente no horário marcado."</p>
+        <div class="review-author">
+          <span class="review-name">Mariana B.</span>
+          <span class="review-meta">Paciente de Cirurgia Oral · Jardins, SP</span>
+        </div>
+      </div>
+
+      <div class="review-card" data-reveal="" data-delay="200">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Coloquei duas coroas de zircônia sobre implantes e o resultado ficou imperceptível em relação aos meus dentes naturais. É um consultório muito calmo, sem aquela correria de clínica grande. Recomendo de olhos fechados."</p>
+        <div class="review-author">
+          <span class="review-name">Carlos Eduardo S.</span>
+          <span class="review-meta">Paciente de Reabilitação Protética · São Paulo</span>
+        </div>
+      </div>
+
+      <div class="review-card" data-reveal="" data-delay="300">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"O que mais me impressionou foi a honestidade no diagnóstico. Ele não tentou me vender tratamentos desnecessários; explicou exatamente o que precisava ser feito e como manter a saúde da gengiva. Profissional ético e atencioso."</p>
+        <div class="review-author">
+          <span class="review-name">Renata M. V.</span>
+          <span class="review-meta">Paciente de Odontologia Preventiva &amp; Estética</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO: DÚVIDAS CLÍNICAS (FAQ) EM ACCORDION -->
+<section id="faq" class="faq-section">
+  <div class="section-container">
+    <div class="section-head">
+      <div class="hero-eyebrow" data-reveal="" data-delay="0">Dúvidas Clínicas</div>
+      <h2 class="section-title" data-reveal="" data-delay="100">Perguntas frequentes sobre os tratamentos.</h2>
+      <p class="section-lead" data-reveal="" data-delay="180">Respostas diretas e esclarecedoras para ajudar você a se planejar com tranquilidade.</p>
+    </div>
+
+    <div class="faq-accordion" data-reveal="" data-delay="200">
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>O procedimento de implante dentário é doloroso?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>A cirurgia é feita com anestesia local, por isso a sensação durante o procedimento é de pressão, sem dor. Com o planejamento tomográfico guiado por computador e medicações preventivas, o pós-operatório costuma ser leve e o desconforto é controlado com analgésicos comuns, conforme orientação do dentista.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Como funciona a recuperação da extração do dente do siso?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Usamos técnicas minimamente invasivas e um protocolo de medicação iniciado antes da cirurgia, que ajuda a reduzir o inchaço e o desconforto. Você recebe orientações por escrito sobre repouso, compressas e alimentação nos primeiros dias, e a equipe acompanha a recuperação.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>O consultório atende convênios odontológicos?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Atendemos somente na modalidade particular, com horário reservado para cada consulta. Emitimos recibo e laudo detalhado para que você possa solicitar o reembolso ao seu plano de saúde, conforme as regras dele.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Qual a durabilidade das facetas cerâmicas e lentes de contato?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Com cerâmicas em dissilicato de lítio e cimentação adesiva, a durabilidade costuma ser longa, desde que o paciente mantenha boa higiene e compareça às revisões semestrais. O tempo varia de caso para caso. A cerâmica resiste melhor a manchas do que o esmalte natural e mantém o brilho por mais tempo.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Como é feito o agendamento da primeira consulta?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>O agendamento pode ser feito diretamente pelo nosso WhatsApp institucional ou telefone. Nossa equipe de recepção consulta a agenda e reserva um horário exclusivo para você. Na primeira consulta é feito o exame clínico completo, diagnóstico por imagem e apresentação de todas as possibilidades de tratamento.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="contato-section">
+  <div class="section-container">
+    <div class="contato-layout">
+      <div class="contato-info">
+        <div class="hero-eyebrow" data-reveal="" data-delay="0">Agendamento &amp; Consultas</div>
+        <h2 class="section-title" data-reveal="" data-delay="100">Estamos à disposição para receber você.</h2>
+        <p class="section-lead" data-reveal="" data-delay="180">Atendimentos de segunda a sexta-feira, com horários reservados previamente para garantir um atendimento calmo e sem interrupções.</p>
+
+        <div class="contato-details-list" data-reveal="" data-delay="240">
+          <div class="contato-detail-item">
+            <span class="contato-detail-label">Endereço</span>
+            <span class="contato-detail-val">Alameda Santos / Bairro Jardins · São Paulo, SP</span>
+            <span class="contato-detail-note">A poucos metros da Avenida Paulista e com estacionamento conveniado no local</span>
+          </div>
+
+          <div class="contato-detail-item">
+            <span class="contato-detail-label">Horários de atendimento</span>
+            <span class="contato-detail-val">Segunda a Sexta-feira: 08h30 às 19h00</span>
+            <span class="contato-detail-note">Consultas com agendamento prévio</span>
+          </div>
+
+          <div class="contato-detail-item">
+            <span class="contato-detail-label">Contato direto</span>
+            <span class="contato-detail-val">WhatsApp: (11) 90000-0000</span>
+            <span class="contato-detail-note">E-mail: contato@drkennyfreitas.com.br</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contato-card-action" data-reveal="" data-delay="260">
+        <h3 class="contato-card-title">Como funciona sua primeira consulta</h3>
+        <p class="contato-card-desc">Dedicamos a primeira sessão para anamnese detalhada, exame clínico completo dos dentes e gengivas e análise de imagens radiográficas. Você recebe uma explicação clara de cada diagnóstico e das opções de tratamento, sem qualquer obrigação.</p>
+        
+        <div class="contato-card-box">
+          <span class="contato-box-label">Fale com nossa recepção</span>
+          <p class="contato-box-text">Envie uma mensagem pelo WhatsApp para consultar dias e horários disponíveis na agenda.</p>
+          <a class="contato-whatsapp-btn" href="https://wa.me/5511900000000?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20hor%C3%A1rios%20dispon%C3%ADveis%20para%20uma%20avalia%C3%A7%C3%A3o%20com%20o%20Dr.%20Kenny%20Freitas." target="_blank" rel="noopener noreferrer">
+            Agendar pelo WhatsApp <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand-col">
+      <span class="brand-name">DR. KENNY FREITAS</span>
+      <span class="brand-note">ODONTOLOGIA</span>
+      <p class="footer-disclaimer">Cirurgia Oral · Implantes · Reabilitação Estética<br>Consultório particular em Jardins, São Paulo – SP</p>
+    </div>
+
+    <div class="footer-nav-col">
+      <span class="footer-col-label">Navegação</span>
+      <nav class="footer-nav" aria-label="Navegação secundária do rodapé">
+        <a href="#inicio">Início</a>
+        <a href="#tratamentos">Tratamentos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+
+    <div class="footer-legal-col">
+      <span class="footer-col-label">Ética Odontológica</span>
+      <p class="footer-legal-text">De acordo com as normas do Conselho Regional de Odontologia de São Paulo (CRO-SP) e Conselho Federal de Odontologia (CFO). As informações deste site têm finalidade educativa e não substituem o diagnóstico presencial.</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Dr. Kenny Freitas · Todos os direitos reservados.</p>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;sage&quot;,&quot;blue&quot;,&quot;clay&quot;],&quot;default&quot;:&quot;sage&quot;,&quot;tsType&quot;:&quot;'sage'|'blue'|'clay'&quot;,&quot;section&quot;:&quot;Identidade&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Agendar consulta&quot;,&quot;Solicitar orçamento&quot;,&quot;Falar conosco&quot;],&quot;default&quot;:&quot;Agendar consulta&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Conversão&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Animações&quot;}}">
+class Component extends DCLogic {
+  state = { scrolled: false };
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches || this.props.motion === false;
+    document.documentElement.dataset.theme = this.props.theme || 'sage';
+    this.onScroll = () => {
+      if (this.frame) return;
+      this.frame = requestAnimationFrame(() => {
+        this.frame = 0;
+        const scrolled = window.scrollY > 30;
+        if (scrolled !== this.state.scrolled) this.setState({ scrolled });
+      });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+    this.setupReveal();
+    this.setupSpotlight();
+    this.setupSplitView();
+  }
+
+  setupSpotlight() {
+    const cards = document.querySelectorAll('.tf-card, .journey-step, .review-card, .metric-item');
+    cards.forEach((card) => {
+      card.addEventListener('pointermove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--spot-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--spot-y', `${e.clientY - rect.top}px`);
+      });
+    });
+  }
+
+  setupSplitView() {
+    const splitView = document.getElementById('splitView');
+    const splitRange = document.getElementById('splitRange');
+    if (splitView && splitRange) {
+      splitRange.addEventListener('input', (e) => {
+        splitView.style.setProperty('--split-pos', `${e.target.value}%`);
+      });
+    }
+
+    const casesData = {
+      1: {
+        imgAfter: 'assets/casos/caso1-depois.jpg',
+        imgBefore: 'assets/casos/caso1-antes.jpg',
+        afterTitle: 'Harmonização Cerâmica Natural',
+        afterDesc: 'Textura natural, brilho suave e gengiva em harmonia com as lentes.',
+        beforeTitle: 'Desgaste & Desalinhamento',
+        beforeDesc: 'Assimetria incisal, restaurações antigas escurecidas e fechamento de diastema.',
+        indication: 'Correção de forma e espaçamento com preparo minimamente invasivo.',
+        planning: 'Escaneamento 3D + Mockup pré-aprovado pelo paciente antes do preparo.',
+        material: 'Lentes cerâmicas em dissilicato de lítio (estratificação manual de cor).',
+        duration: '3 consultas (planejamento, preparo guiado e cimentação definitiva).'
+      },
+      2: {
+        imgAfter: 'assets/casos/caso2-depois.jpg',
+        imgBefore: 'assets/casos/caso2-antes.jpg',
+        afterTitle: 'Reabilitação Anterior Guiada',
+        afterDesc: 'Perfil de emergência semelhante ao dente vizinho, sem sombra metálica.',
+        beforeTitle: 'Ausência de Incisivo Central',
+        beforeDesc: 'Perda dentária decorrente de fratura radicular profunda por trauma antigo.',
+        indication: 'Substituição de elemento unitário estético na zona do sorriso.',
+        planning: 'Tomografia volumétrica Cone Beam + Guia cirúrgico estereolitográfico.',
+        material: 'Implante de titânio conexão cônica + Coroa de zircônia pura.',
+        duration: 'Instalação em 1 sessão com provisório imediato + osseointegração.'
+      },
+      3: {
+        imgAfter: 'assets/casos/caso3-depois.jpg',
+        imgBefore: 'assets/casos/caso3-antes.jpg',
+        afterTitle: 'Sorriso Clareado & Mimético',
+        afterDesc: 'Esmalte 5 tons mais claro com translucidez natural e margens seladas.',
+        beforeTitle: 'Pigmentação & Amálgama',
+        beforeDesc: 'Manchas de café e fumo associadas a restaurações metálicas escuras.',
+        indication: 'Rejuvenescimento dental sem desgastes de esmalte.',
+        planning: 'Registro de cor por espectrofotometria digital e profilaxia prévia.',
+        material: 'Clareamento conjugado (LED em clínica + moldeiras) e resinas nanoparticuladas.',
+        duration: '2 semanas de tratamento supervisionado.'
+      }
+    };
+
+    const caseBtns = document.querySelectorAll('[data-case-btn]');
+    caseBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        caseBtns.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        const num = btn.dataset.caseBtn;
+        const d = casesData[num];
+        if (!d) return;
+
+        const elAfterTitle = document.getElementById('caseTitleAfter');
+        const elAfterDesc = document.getElementById('caseDescAfter');
+        const elBeforeTitle = document.getElementById('caseTitleBefore');
+        const elBeforeDesc = document.getElementById('caseDescBefore');
+        const elIndication = document.getElementById('caseTechIndication');
+        const elPlanning = document.getElementById('caseTechPlanning');
+        const elMaterial = document.getElementById('caseTechMaterial');
+        const elDuration = document.getElementById('caseTechDuration');
+
+        if (elAfterTitle) elAfterTitle.textContent = d.afterTitle;
+        if (elAfterDesc) elAfterDesc.textContent = d.afterDesc;
+        if (elBeforeTitle) elBeforeTitle.textContent = d.beforeTitle;
+        if (elBeforeDesc) elBeforeDesc.textContent = d.beforeDesc;
+        if (elIndication) elIndication.textContent = d.indication;
+        if (elPlanning) elPlanning.textContent = d.planning;
+        if (elMaterial) elMaterial.textContent = d.material;
+        if (elDuration) elDuration.textContent = d.duration;
+
+        if (splitView) {
+          splitView.style.setProperty('--img-after', `url('${d.imgAfter}')`);
+          splitView.style.setProperty('--img-before', `url('${d.imgBefore}')`);
+        }
+        if (splitRange && splitView) {
+          splitRange.value = 50;
+          splitView.style.setProperty('--split-pos', '50%');
+        }
+      });
+    });
+  }
+
+  componentDidUpdate(previousProps) {
+    if (previousProps.theme !== this.props.theme) document.documentElement.dataset.theme = this.props.theme || 'sage';
+    if (previousProps.motion !== this.props.motion) this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches || this.props.motion === false;
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    cancelAnimationFrame(this.frame);
+    if (this.io) this.io.disconnect();
+  }
+
+  setupReveal() {
+    const elements = [...document.querySelectorAll('[data-reveal]')];
+    if (this.reduced || !('IntersectionObserver' in window)) return;
+    const easing = 'cubic-bezier(.22,.61,.36,1)';
+    elements.forEach((element) => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(24px)';
+      element.style.filter = 'blur(6px)';
+      element.style.transition = `opacity .85s ${easing}, transform .85s ${easing}, filter .85s ${easing}`;
+      element.style.transitionDelay = (element.dataset.delay || 0) + 'ms';
+    });
+    this.io = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      this.io.unobserve(entry.target);
+      requestAnimationFrame(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'none';
+        entry.target.style.filter = 'none';
+      });
+      window.setTimeout(() => { entry.target.style.transitionDelay = '0ms'; }, 1700);
+    }), { threshold: 0.12 });
+    elements.forEach((element) => this.io.observe(element));
+  }
+
+  renderVals() {
+    const theme = this.props.theme || 'sage';
+    const ctaLabel = this.props.ctaLabel || 'Agendar consulta';
+    const navItems = [['#inicio', 'Início'], ['#tratamentos', 'Tratamentos'], ['#sobre', 'Sobre'], ['#contato', 'Contato']]
+      .map(([href, label]) => ({ href, label }));
+    return {
+      theme,
+      ctaLabel,
+      navItems,
+      heroPathsProps: {
+        style: { position: 'absolute', inset: 0, zIndex: 0, color: 'var(--accent)', opacity: 0.9, pointerEvents: 'none' },
+        count: 18, spread: 0.42, angle: -8, speed: 0.22, interactive: true, mask: false, twist: false
+      },
+      headerBg: this.state.scrolled ? 'var(--background)' : 'transparent',
+      headerBorder: this.state.scrolled ? 'var(--border)' : 'transparent',
+      headerPad: this.state.scrolled ? '14px' : '26px'
+    };
+  }
+}
+</script>
+</body>
+</html>

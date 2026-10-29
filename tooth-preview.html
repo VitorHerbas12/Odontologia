@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Dr. Kenny Freitas · Odontologia em Jardins, São Paulo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.addEventListener('beforeunload', function () {
+      window.scrollTo(0, 0);
+    });
+    if (window.location.hash && window.location.hash !== '#inicio') {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    window.scrollTo(0, 0);
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;1,6..72,300&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <style>
+    :root {
+      --background: #f4f3ee;
+      --surface: #e9e9e1;
+      --primary: #2e3b32;
+      --secondary: #b7c0ad;
+      --accent: #7d8f72;
+      --text: #1c211d;
+      --text-muted: #5f655c;
+      --border: rgba(28, 33, 29, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--text);
+      font-family: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fundo com as ondas sutis características do site */
+    .bg-paths {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .bg-paths svg {
+      width: 100%;
+      height: 100%;
+      opacity: 0.42;
+    }
+
+    /* Header simples de preview */
+    .preview-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(244, 243, 238, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 18px clamp(20px, 5vw, 64px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-title {
+      font-family: 'Newsreader', serif;
+      font-size: 20px;
+      letter-spacing: 0.06em;
+    }
+
+    .brand-sub {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--primary);
+      color: var(--background);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .header-cta:hover {
+      background: var(--text);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      z-index: 10;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: clamp(60px, 8vh, 100px) clamp(24px, 5vw, 76px) 40px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: clamp(24px, 5vw, 72px);
+      align-items: center;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      max-width: 580px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .hero-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Newsreader', serif;
+      font-size: clamp(48px, 5.4vw, 76px);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-title em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-description {
+      font-size: clamp(16px, 1.25vw, 18px);
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--primary);
+      color: var(--background);
+      padding: 16px 26px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .hero-primary:hover {
+      background: var(--text);
+      transform: translateY(-2px);
+    }
+
+    .hero-secondary {
+      font-size: 14px;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding: 4px 0;
+      transition: border-color 0.25s;
+    }
+
+    .hero-secondary:hover {
+      border-color: var(--text);
+    }
+
+    /* Container de Demonstração do Hero Art */
+    .hero-art {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: min(65vh, 620px);
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      width: min(84%, 500px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(125, 143, 114, 0.22);
+      border-radius: 50%;
+      box-shadow: 0 0 0 32px rgba(125, 143, 114, 0.025), 0 0 0 76px rgba(125, 143, 114, 0.018);
+      pointer-events: none;
+    }
+
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      width: 44%;
+      height: 5%;
+      border-radius: 50%;
+      background: rgba(35, 45, 36, 0.12);
+      filter: blur(24px);
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(28, 33, 29, 0.08);
+      z-index: 20;
+    }
+
+    .hero-badge-pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #0ea5e9;
+      box-shadow: 0 0 8px #0ea5e9;
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* Seção de Tratamentos e Filtros */
+    .treatments-section {
+      position: relative;
+      z-index: 10;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: clamp(64px, 8vw, 108px) clamp(24px, 5vw, 76px);
+      border-top: 1px solid var(--border);
+    }
+
+    .treatments-title {
+      margin: 16px 0 0;
+      font-family: 'Newsreader', serif;
+      font-weight: 300;
+      font-size: clamp(38px, 4.4vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .treatments-lead {
+      max-width: 34em;
+      margin: 18px 0 0;
+      color: var(--text-muted);
+      font-size: clamp(16px, 1.2vw, 18px);
+      line-height: 1.65;
+    }
+
+    /* Estilos do Componente de Filtros */
+    .tf-container {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .tf-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .tf-search-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .tf-search-input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 15px 44px 15px 20px;
+      font-family: inherit;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .tf-search-input:focus {
+      border-color: var(--accent);
+      background: var(--background);
+    }
+
+    .tf-search-clear {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 14px;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 50%;
+    }
+
+    .tf-chips-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tf-chip {
+      font: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 18px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .tf-chip:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .tf-chip.is-active {
+      background: var(--primary);
+      color: var(--background);
+      border-color: var(--primary);
+    }
+
+    .tf-chip-count {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: rgba(28, 33, 29, 0.08);
+      color: inherit;
+    }
+
+    .tf-chip.is-active .tf-chip-count {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--background);
+    }
+
+    @keyframes card-rise {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.985);
+        filter: blur(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    .tf-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 24px;
+    }
+
+    .tf-card {
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      cursor: pointer;
+      position: relative;
+      animation: card-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .tf-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 12px 28px rgba(35, 45, 36, 0.06);
+      transform: translateY(-3px);
+    }
+
+    .tf-card.is-expanded {
+      border-color: var(--primary);
+      box-shadow: 0 16px 36px rgba(35, 45, 36, 0.09);
+    }
+
+    .tf-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .tf-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .tf-card-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .tf-card-pill {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(125, 143, 114, 0.15);
+      color: var(--primary);
+    }
+
+    .tf-card-title {
+      margin: 0 0 10px;
+      font-family: 'Newsreader', serif;
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .tf-card-summary {
+      margin: 0 0 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .tf-card-meta {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(28, 33, 29, 0.03);
+      border: 1px solid rgba(28, 33, 29, 0.05);
+    }
+
+    .tf-meta-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 12px;
+    }
+
+    .tf-meta-label {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .tf-meta-val {
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .tf-card-steps {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .tf-steps-title {
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .tf-steps-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .tf-card-footer {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tf-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: var(--background);
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .tf-cta-btn:hover {
+      background: var(--text);
+      color: var(--background);
+      transform: translateY(-1px);
+    }
+
+    .tf-toggle-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 12px;
+      cursor: pointer;
+      padding: 6px 0;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-family: inherit;
+    }
+
+    .tf-toggle-btn:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 900px) {
+      .hero-section {
+        grid-template-columns: 1fr;
+        padding-top: 40px;
+      }
+      .hero-art {
+        height: 50vh;
+        min-height: 360px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .tf-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .tf-card-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .tf-cta-btn {
+        justify-content: center;
+        width: 100%;
+      }
+    }
+
+    /* Estilos das novas seções Consultório, Sobre e Contato */
+    .section-container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .section-head {
+      margin-bottom: 44px;
+      max-width: 760px;
+    }
+
+    .section-title {
+      margin: 16px 0 0;
+      font-family: 'Newsreader', serif;
+      font-weight: 300;
+      font-size: clamp(36px, 4.2vw, 56px);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+
+    .section-lead {
+      margin: 18px 0 0;
+      color: var(--text-muted);
+      font-size: clamp(16px, 1.2vw, 18px);
+      line-height: 1.65;
+      max-width: 36em;
+    }
+
+    .consultorio-section {
+      position: relative;
+      border-top: 1px solid var(--border);
+      padding: clamp(72px, 10vw, 120px) clamp(24px, 5vw, 76px);
+      box-sizing: border-box;
+    }
+
+    .consultorio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .consultorio-card {
+      padding: 32px 26px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, transform 0.25s;
+    }
+
+    .consultorio-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .consultorio-card-num {
+      font-family: 'Newsreader', serif;
+      font-size: 26px;
+      font-weight: 300;
+      color: var(--accent);
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+
+    .consultorio-card-title {
+      margin: 0 0 10px;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    .consultorio-card-text {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .sobre-section {
+      position: relative;
+      border-top: 1px solid var(--border);
+      padding: clamp(72px, 10vw, 120px) clamp(24px, 5vw, 76px);
+      box-sizing: border-box;
+    }
+
+    .sobre-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: clamp(36px, 6vw, 84px);
+      align-items: center;
+    }
+
+    .sobre-media {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .sobre-image-frame {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 40px rgba(35, 45, 36, 0.07);
+      background: var(--surface);
+      aspect-ratio: 3/4;
+    }
+
+    .sobre-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .sobre-badge {
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      right: 18px;
+      background: rgba(244, 243, 238, 0.92);
+      backdrop-filter: blur(12px);
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .sobre-badge-name {
+      font-family: 'Newsreader', serif;
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.1;
+    }
+
+    .sobre-badge-role {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .sobre-content {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .sobre-text p {
+      margin: 0 0 14px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .sobre-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .sobre-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+    }
+
+    .sobre-highlight-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sobre-highlight-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .sobre-highlight-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .contato-section {
+      position: relative;
+      border-top: 1px solid var(--border);
+      padding: clamp(72px, 10vw, 120px) clamp(24px, 5vw, 76px);
+      box-sizing: border-box;
+    }
+
+    .contato-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: clamp(36px, 6vw, 76px);
+      align-items: start;
+    }
+
+    .contato-details-list {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      margin-top: 36px;
+    }
+
+    .contato-detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contato-detail-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .contato-detail-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .contato-detail-val {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .contato-detail-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .contato-card-action {
+      padding: clamp(28px, 4vw, 44px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contato-card-title {
+      margin: 0;
+      font-family: 'Newsreader', serif;
+      font-size: 26px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .contato-card-desc {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .contato-card-box {
+      padding: 20px;
+      border-radius: 18px;
+      background: var(--background);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .contato-box-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .contato-box-text {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .contato-whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--primary);
+      color: var(--background);
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 14px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+      text-align: center;
+    }
+
+    .contato-whatsapp-btn:hover {
+      background: var(--text);
+      color: var(--background);
+      transform: translateY(-1px);
+    }
+
+    .preview-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 2vw, 28px);
+    }
+
+    .preview-nav a {
+      font-size: 13px;
+      color: var(--text);
+      text-decoration: none;
+      padding: 6px 0;
+      transition: color 0.2s;
+    }
+
+    .preview-nav a:hover {
+      color: var(--accent);
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 64px clamp(24px, 5vw, 76px) 32px;
+    }
+
+    .footer-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr 1.2fr;
+      gap: clamp(32px, 5vw, 64px);
+      padding-bottom: 44px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-disclaimer {
+      margin: 10px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-col-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-nav a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .footer-nav a:hover {
+      color: var(--primary);
+    }
+
+    .footer-legal-text {
+      margin: 0;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .footer-bottom {
+      max-width: 1440px;
+      margin: 28px auto 0;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    @media (max-width: 960px) {
+      .preview-nav { display: none; }
+      .sobre-layout, .contato-layout { grid-template-columns: 1fr; gap: 40px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ondas sutis do Background Paths -->
+  <div class="bg-paths" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" fill="none" preserveAspectRatio="xMidYMid slice">
+      <path d="M-100,450 C300,320 600,680 1000,400 C1200,260 1400,520 1600,450" stroke="rgba(125,143,114,0.18)" stroke-width="1.5" stroke-dasharray="6 8" />
+      <path d="M-100,500 C250,380 700,720 1100,440 C1300,300 1450,560 1600,500" stroke="rgba(125,143,114,0.12)" stroke-width="1" />
+      <path d="M-100,400 C350,260 550,640 900,360 C1150,220 1350,480 1600,400" stroke="rgba(14,165,233,0.08)" stroke-width="1.2" />
+    </svg>
+  </div>
+
+  <header class="preview-header">
+    <div>
+      <span class="brand-title">DR. KENNY FREITAS</span>
+      <span class="brand-sub">ODONTOLOGIA</span>
+    </div>
+    <nav class="preview-nav" aria-label="Navegação principal">
+      <a href="#inicio">Início</a>
+      <a href="#tratamentos">Tratamentos</a>
+      <a href="#consultorio">Consultório</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="header-cta" href="https://wa.me/5511900000000" target="_blank" rel="noopener noreferrer">
+      Agendar consulta <span aria-hidden="true">→</span>
+    </a>
+  </header>
+
+  <main>
+    <!-- Seção Hero com Dente 3D Vivo -->
+    <section id="inicio" class="hero-section">
+      <div class="hero-copy">
+        <div class="hero-eyebrow">Consultório em Jardins, SP</div>
+        <h1 class="hero-title">Odontologia com <em>precisão, cuidado</em> e planejamento.</h1>
+        <p class="hero-description">Tratamentos planejados sob medida, com diagnóstico por imagem e tecnologia em cada etapa.</p>
+        <div class="hero-actions">
+          <a class="hero-primary" href="https://wa.me/5511900000000" target="_blank" rel="noopener noreferrer">
+            Agendar consulta <span aria-hidden="true">→</span>
+          </a>
+          <a class="hero-secondary" href="#tratamentos">Conheça os tratamentos</a>
+        </div>
+      </div>
+
+      <div class="hero-art" id="tooth-mount">
+        <div class="hero-hud-tl" aria-hidden="true">+ CALIBRAÇÃO 3D · 0.05mm</div>
+        <div class="hero-hud-tr" aria-hidden="true">PLANO CRÂNIO-FACIAL +</div>
+        <div class="hero-hud-bl" aria-hidden="true">ESCALA ANATÔMICA 1:1</div>
+        <div class="hero-badge">
+          <span class="hero-badge-pulse"></span>
+          Visualização 3D · Estudo Vivo
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO: MÉTRICAS CLÍNICAS DE PRECISÃO -->
+    <section class="metrics-section">
+      <div class="section-container">
+        <div class="metrics-grid">
+          <div class="metric-item">
+            <span class="metric-num">1</span>
+            <span class="metric-label">Paciente por horário</span>
+            <span class="metric-sub">Dedicação exclusiva e pontualidade na agenda</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-num">100%</span>
+            <span class="metric-label">Planejamento digital</span>
+            <span class="metric-sub">Tomografia computadorizada e escaneamento 3D</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-num">+10</span>
+            <span class="metric-label">Anos de prática clínica</span>
+            <span class="metric-sub">Cirurgia oral, implantes e reabilitação estética</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-num">0</span>
+            <span class="metric-label">Sobreposição de consultas</span>
+            <span class="metric-sub">Respeito rigoroso ao seu tempo e privacidade</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de Tratamentos com Grade Completa e Filtros -->
+    <section id="tratamentos" class="treatments-section">
+      <div class="hero-eyebrow">Entenda seu tratamento</div>
+      <h2 class="treatments-title">Diagnóstico<br>antes de tudo.</h2>
+      <p class="treatments-lead">Filtre por especialidade clínica ou busque pelo seu sintoma para entender a indicação, o tempo estimado e as etapas do procedimento.</p>
+      
+      <!-- Montagem do Componente de Filtros -->
+      <div id="treatments-filter-mount"></div>
+    </section>
+
+    <!-- SEÇÃO: CASOS CLÍNICOS E COMPARADOR INTERATIVO ANTES & DEPOIS -->
+    <section id="casos" class="cases-section">
+      <div class="section-container">
+        <div class="section-head">
+          <div class="hero-eyebrow">Estudo de Casos &amp; Resultados</div>
+          <h2 class="section-title">Precisão estética e funcionalidade comprovadas.</h2>
+          <p class="section-lead">Arraste a cortina central para comparar o antes e o depois de transformações planejadas digitalmente pelo Dr. Kenny Freitas.</p>
+        </div>
+
+        <div class="case-comparator">
+          <div class="case-tabs" role="tablist">
+            <button type="button" class="case-tab is-active" data-case-btn="1">Caso 01 · Facetas em Cerâmica</button>
+            <button type="button" class="case-tab" data-case-btn="2">Caso 02 · Implante Anterior Guiado</button>
+            <button type="button" class="case-tab" data-case-btn="3">Caso 03 · Clareamento &amp; Resinas</button>
+          </div>
+
+          <div class="case-stage">
+            <div class="split-view" id="splitView" style="--split-pos: 50%;">
+              <div class="split-layer split-after">
+                <div class="split-visual split-after-bg">
+                  <div class="split-tag after-tag">Resultado Final</div>
+                  <div class="split-content-desc">
+                    <span class="split-case-badge">Resultado Concluído</span>
+                    <h4 class="split-case-title" id="caseTitleAfter">Harmonização Cerâmica Natural</h4>
+                    <p id="caseDescAfter">Textura periquimática sutil, fluorescência vítrea e integração gengival equilibrada.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-layer split-before">
+                <div class="split-visual split-before-bg">
+                  <div class="split-tag before-tag">Condição Inicial</div>
+                  <div class="split-content-desc">
+                    <span class="split-case-badge">Diagnóstico Prévio</span>
+                    <h4 class="split-case-title" id="caseTitleBefore">Desgaste &amp; Desalinhamento</h4>
+                    <p id="caseDescBefore">Assimetria incisal, restaurações antigas escurecidas e fechamento de diastema.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="split-divider">
+                <div class="split-handle">
+                  <span>‹</span> Deslize para comparar <span>›</span>
+                </div>
+              </div>
+              <input type="range" min="0" max="100" value="50" class="split-range" id="splitRange" aria-label="Deslizar para comparar antes e depois" />
+            </div>
+
+            <div class="case-tech-sheet">
+              <div class="tech-header">
+                <span class="tech-label">Ficha Técnica do Procedimento</span>
+                <span class="tech-status">Caso Clínico Documentado · Protocolo Fotográfico</span>
+              </div>
+              <div class="tech-grid">
+                <div class="tech-col">
+                  <span class="tech-k">Indicação Clínica</span>
+                  <span class="tech-v" id="caseTechIndication">Correção de forma e espaçamento com preparo minimamente invasivo.</span>
+                </div>
+                <div class="tech-col">
+                  <span class="tech-k">Planejamento</span>
+                  <span class="tech-v" id="caseTechPlanning">Escaneamento 3D + Mockup pré-aprovado pelo paciente antes do preparo.</span>
+                </div>
+                <div class="tech-col">
+                  <span class="tech-k">Material Utilizado</span>
+                  <span class="tech-v" id="caseTechMaterial">Lentes cerâmicas em dissilicato de lítio (estratificação manual de cor).</span>
+                </div>
+                <div class="tech-col">
+                  <span class="tech-k">Duração do Caso</span>
+                  <span class="tech-v" id="caseTechDuration">3 consultas (planejamento, preparo guiado e cimentação definitiva).</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO: JORNADA DO PACIENTE -->
+    <section id="jornada" class="journey-section">
+      <div class="section-container">
+        <div class="section-head">
+          <div class="hero-eyebrow">Experiência no Consultório</div>
+          <h2 class="section-title">Uma jornada clínica transparente, do acolhimento à alta.</h2>
+          <p class="section-lead">Sem pressa e sem procedimentos invasivos desnecessários. Entenda como planejamos cada detalhe com você.</p>
+        </div>
+
+        <div class="journey-steps">
+          <div class="journey-step">
+            <div class="step-num-pill">Passo 01</div>
+            <h3 class="step-title">Acolhimento &amp; Escuta</h3>
+            <p class="step-desc">Conversa inicial para compreender o que incomoda você: sensibilidade, mastigação ou estética. Histórico de saúde detalhado e sem pressa.</p>
+          </div>
+
+          <div class="journey-step">
+            <div class="step-num-pill">Passo 02</div>
+            <h3 class="step-title">Diagnóstico Digital 3D</h3>
+            <p class="step-desc">Avaliação clínica detalhada com radiografia de baixa emissão e escaneamento intraoral para enxergar com clareza o que os olhos não veem.</p>
+          </div>
+
+          <div class="journey-step">
+            <div class="step-num-pill">Passo 03</div>
+            <h3 class="step-title">Plano Transparente</h3>
+            <p class="step-desc">Apresentamos as alternativas de tratamento na tela, os prós e contras de cada material e os custos, para você decidir com calma e total segurança.</p>
+          </div>
+
+          <div class="journey-step">
+            <div class="step-num-pill">Passo 04</div>
+            <h3 class="step-title">Execução &amp; Acompanhamento</h3>
+            <p class="step-desc">Procedimento realizado com conforto, anestesia controlada e materiais comprovados. Suporte direto pós-consulta e revisões preventivas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Consultório -->
+    <section id="consultorio" class="consultorio-section">
+      <div class="section-container">
+        <div class="section-head">
+          <div class="hero-eyebrow">Estrutura &amp; Atendimento</div>
+          <h2 class="section-title">Um consultório desenhado para consultas com tempo, calma e privacidade.</h2>
+          <p class="section-lead">Nosso espaço em Jardins foi planejado para receber um paciente por horário. Sem salas de espera cheias, com respeito rigoroso ao seu tempo e atenção integral a cada detalhe do atendimento.</p>
+        </div>
+
+        <div class="consultorio-grid">
+          <div class="consultorio-card">
+            <div class="consultorio-card-num">01</div>
+            <h3 class="consultorio-card-title">Pontualidade e horário exclusivo</h3>
+            <p class="consultorio-card-text">Intervalos generosos entre os atendimentos. Você é recebido no horário marcado e tem todo o tempo necessário para conversar, examinar e compreender as decisões clínicas.</p>
+          </div>
+
+          <div class="consultorio-card">
+            <div class="consultorio-card-num">02</div>
+            <h3 class="consultorio-card-title">Diagnóstico com suporte digital</h3>
+            <p class="consultorio-card-text">Planejamento apoiado por radiografia digital e escaneamento intraoral tridimensional. As intervenções cirúrgicas e protéticas são planejadas no computador antes de qualquer procedimento em boca.</p>
+          </div>
+
+          <div class="consultorio-card">
+            <div class="consultorio-card-num">03</div>
+            <h3 class="consultorio-card-title">Biossegurança e esterilização hospitalar</h3>
+            <p class="consultorio-card-text">Protocolo rigoroso com autoclave calibrada, testes biológicos periódicos de controle e materiais estéreis de uso individual abertos exclusivamente diante do paciente.</p>
+          </div>
+
+          <div class="consultorio-card">
+            <div class="consultorio-card-num">04</div>
+            <h3 class="consultorio-card-title">Ambiente acolhedor e sem ruídos</h3>
+            <p class="consultorio-card-text">Isolamento acústico cuidadoso, climatização suave e técnicas de anestesia local com controle de fluxo para que consultas e cirurgias aconteçam com o máximo de tranquilidade.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section id="sobre" class="sobre-section">
+      <div class="section-container">
+        <div class="sobre-layout">
+          <div class="sobre-media">
+            <div class="sobre-image-frame">
+              <img src="assets/hero-portrait.png" alt="Dr. Kenny Freitas — Cirurgião-Dentista" class="sobre-image" loading="lazy">
+            </div>
+            <div class="sobre-badge">
+              <span class="sobre-badge-name">Dr. Kenny Freitas</span>
+              <span class="sobre-badge-role">Cirurgião-Dentista · CRO-SP</span>
+            </div>
+          </div>
+
+          <div class="sobre-content">
+            <div class="hero-eyebrow">Sobre o profissional</div>
+            <h2 class="section-title">Odontologia baseada em diagnóstico cuidadoso e conduta ética.</h2>
+            <div class="sobre-text">
+              <p>Acredito que um tratamento bem-sucedido começa na escuta atenta das necessidades do paciente e na avaliação minuciosa de cada dente e estrutura gengival. Nenhuma decisão clínica deve ser apressada ou padronizada.</p>
+              <p>Com prática focada em Cirurgia Oral Menor, Implantes Dentários e Reabilitação Estética, meu compromisso é aliar precisão cirúrgica a materiais de alta longevidade biomecânica, sempre priorizando a preservação dos dentes naturais.</p>
+              <p>No consultório, você é acompanhado pelo mesmo cirurgião-dentista em todas as consultas — desde a primeira avaliação até a alta e as revisões preventivas semestrais.</p>
+            </div>
+
+            <div class="sobre-highlights">
+              <div class="sobre-highlight-item">
+                <span class="sobre-highlight-title">Atuação clínica</span>
+                <span class="sobre-highlight-desc">Cirurgia oral, implantes guiados e prótese sobre implante</span>
+              </div>
+              <div class="sobre-highlight-item">
+                <span class="sobre-highlight-title">Atendimento</span>
+                <span class="sobre-highlight-desc">Direto, personalizado e com pontualidade na agenda</span>
+              </div>
+              <div class="sobre-highlight-item">
+                <span class="sobre-highlight-title">Localização</span>
+                <span class="sobre-highlight-desc">Consultório em Jardins, São Paulo – SP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO: AVALIAÇÕES E RELATOS REAIS DE PACIENTES -->
+    <section id="avaliacoes" class="reviews-section">
+      <div class="section-container">
+        <div class="section-head">
+          <div class="hero-eyebrow">Depoimentos &amp; Confiança</div>
+          <h2 class="section-title">A experiência de quem confia seu sorriso ao Dr. Kenny.</h2>
+          <p class="section-lead">Opiniões de pacientes sobre o atendimento pontual, a clareza nas explicações e a tranquilidade nos procedimentos.</p>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Sempre tive receio de procedimentos cirúrgicos, mas a extração dos meus sisos foi surpreendentemente tranquila. O Dr. Kenny explicou tudo antes na radiografia, o pós-operatório foi sem dor e o atendimento começou exatamente no horário marcado."</p>
+            <div class="review-author">
+              <span class="review-name">Mariana B.</span>
+              <span class="review-meta">Paciente de Cirurgia Oral · Jardins, SP</span>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Coloquei duas coroas de zircônia sobre implantes e o resultado ficou imperceptível em relação aos meus dentes naturais. É um consultório muito calmo, sem aquela correria de clínica grande. Recomendo de olhos fechados."</p>
+            <div class="review-author">
+              <span class="review-name">Carlos Eduardo S.</span>
+              <span class="review-meta">Paciente de Reabilitação Protética · São Paulo</span>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"O que mais me impressionou foi a honestidade no diagnóstico. Ele não tentou me vender tratamentos desnecessários; explicou exatamente o que precisava ser feito e como manter a saúde da gengiva. Profissional ético e atencioso."</p>
+            <div class="review-author">
+              <span class="review-name">Renata M. V.</span>
+              <span class="review-meta">Paciente de Odontologia Preventiva &amp; Estética</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO: DÚVIDAS CLÍNICAS (FAQ) EM ACCORDION -->
+    <section id="faq" class="faq-section">
+      <div class="section-container">
+        <div class="section-head">
+          <div class="hero-eyebrow">Dúvidas Clínicas</div>
+          <h2 class="section-title">Perguntas frequentes sobre os tratamentos.</h2>
+          <p class="section-lead">Respostas diretas e esclarecedoras para ajudar você a se planejar com tranquilidade.</p>
+        </div>
+
+        <div class="faq-accordion">
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>O procedimento de implante dentário é doloroso?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Não. A cirurgia de implante é realizada sob anestesia local profunda, o que torna o procedimento totalmente indolor durante a execução. O osso maxilar possui poucas terminações nervosas em comparação à gengiva. Com o planejamento tomográfico guiado por computador e medicações preventivas pré-operatórias, o pós-operatório costuma ser muito suave, com desconforto facilmente controlado por analgésicos comuns.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Como funciona a recuperação da extração do dente do siso?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Adotamos técnicas minimamente invasivas aliadas a um protocolo medicamentoso profilático iniciado antes da cirurgia. Isso reduz drasticamente o inchaço e o desconforto. A maioria dos pacientes retorna às atividades rotineiras leves em 48 a 72 horas, recebendo orientações claras de repouso, compressas e alimentação nos primeiros dias.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>O consultório atende convênios odontológicos?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Trabalhamos exclusivamente na modalidade particular, garantindo consultas com tempo suficiente (sem pressa) e uso dos melhores materiais disponíveis no mercado mundial. No entanto, fornecemos toda a documentação, laudos e recibos detalhados para que pacientes possam solicitar o reembolso de livre escolha junto ao seu plano de saúde com facilidade.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Qual a durabilidade das facetas cerâmicas e lentes de contato?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>Com os sistemas cerâmicos atuais em dissilicato de lítio e técnicas de cimentação adesiva de ponta, estudos clínicos apontam longevidade média superior a 10 a 15 anos, desde que o paciente mantenha boa higiene e compareça às revisões preventivas semestrais. A cerâmica não mancha com café, chá ou vinho e mantém o brilho natural.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Como é feito o agendamento da primeira consulta?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>O agendamento pode ser feito diretamente pelo nosso WhatsApp institucional ou telefone. Nossa equipe de recepção consulta a agenda e reserva um horário exclusivo para você. Na primeira consulta é feito o exame clínico completo, diagnóstico por imagem e apresentação de todas as possibilidades de tratamento.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="contato" class="contato-section">
+      <div class="section-container">
+        <div class="contato-layout">
+          <div class="contato-info">
+            <div class="hero-eyebrow">Agendamento &amp; Consultas</div>
+            <h2 class="section-title">Estamos à disposição para receber você.</h2>
+            <p class="section-lead">Atendimentos de segunda a sexta-feira, com horários reservados previamente para garantir um atendimento calmo e sem interrupções.</p>
+
+            <div class="contato-details-list">
+              <div class="contato-detail-item">
+                <span class="contato-detail-label">Endereço</span>
+                <span class="contato-detail-val">Alameda Santos / Bairro Jardins · São Paulo, SP</span>
+                <span class="contato-detail-note">A poucos metros da Avenida Paulista e com estacionamento conveniado no local</span>
+              </div>
+
+              <div class="contato-detail-item">
+                <span class="contato-detail-label">Horários de atendimento</span>
+                <span class="contato-detail-val">Segunda a Sexta-feira: 08h30 às 19h00</span>
+                <span class="contato-detail-note">Consultas com agendamento prévio</span>
+              </div>
+
+              <div class="contato-detail-item">
+                <span class="contato-detail-label">Contato direto</span>
+                <span class="contato-detail-val">WhatsApp: (11) 90000-0000</span>
+                <span class="contato-detail-note">E-mail: contato@drkennyfreitas.com.br</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contato-card-action">
+            <h3 class="contato-card-title">Como funciona sua primeira consulta</h3>
+            <p class="contato-card-desc">Dedicamos a primeira sessão para anamnese detalhada, exame clínico completo dos dentes e gengivas e análise de imagens radiográficas. Você recebe uma explicação clara de cada diagnóstico e das opções de tratamento, sem qualquer obrigação.</p>
+            
+            <div class="contato-card-box">
+              <span class="contato-box-label">Fale com nossa recepção</span>
+              <p class="contato-box-text">Envie uma mensagem pelo WhatsApp para consultar dias e horários disponíveis na agenda.</p>
+              <a class="contato-whatsapp-btn" href="https://wa.me/5511900000000?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20hor%C3%A1rios%20dispon%C3%ADveis%20para%20uma%20avalia%C3%A7%C3%A3o%20com%20o%20Dr.%20Kenny%20Freitas." target="_blank" rel="noopener noreferrer">
+                Agendar pelo WhatsApp <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand-col">
+        <span class="brand-title">DR. KENNY FREITAS</span>
+        <span class="brand-sub">ODONTOLOGIA</span>
+        <p class="footer-disclaimer">Cirurgia Oral · Implantes · Reabilitação Estética<br>Consultório particular em Jardins, São Paulo – SP</p>
+      </div>
+
+      <div class="footer-nav-col">
+        <span class="footer-col-label">Navegação</span>
+        <nav class="footer-nav" aria-label="Navegação secundária do rodapé">
+          <a href="#inicio">Início</a>
+          <a href="#tratamentos">Tratamentos</a>
+          <a href="#consultorio">Consultório</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+        </nav>
+      </div>
+
+      <div class="footer-legal-col">
+        <span class="footer-col-label">Ética Odontológica</span>
+        <p class="footer-legal-text">De acordo com as normas do Conselho Regional de Odontologia de São Paulo (CRO-SP) e Conselho Federal de Odontologia (CFO). As informações deste site têm finalidade educativa e não substituem o diagnóstico presencial.</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Dr. Kenny Freitas · Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Carrega os scripts do Dente 3D e dos Filtros de Tratamentos -->
+  <script src="./hero-tooth.js"></script>
+  <script src="./treatment-filters.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.ReactDOM) {
+        // Monta o Dente 3D Vivo no Hero
+        if (window.HeroTooth) {
+          const toothMount = document.getElementById("tooth-mount");
+          if (toothMount) {
+            const rootTooth = ReactDOM.createRoot(toothMount);
+            rootTooth.render(React.createElement(window.HeroTooth));
+          }
+        }
+
+        // Monta a Grade Completa de Filtros de Tratamentos
+        if (window.TreatmentFilters) {
+          const filterMount = document.getElementById("treatments-filter-mount");
+          if (filterMount) {
+            const rootFilter = ReactDOM.createRoot(filterMount);
+            rootFilter.render(React.createElement(window.TreatmentFilters));
+          }
+        }
+      }
+
+      // Animação de surgimento suave dos cartões via IntersectionObserver
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const cards = document.querySelectorAll('.consultorio-card, .contato-card-action, .sobre-highlight-item');
+        cards.forEach((el, idx) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(22px)';
+          el.style.filter = 'blur(4px)';
+          el.style.transition = 'opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1), filter .75s cubic-bezier(.16,1,.3,1)';
+          el.style.transitionDelay = ((idx % 4) * 110) + 'ms';
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'none';
+              entry.target.style.filter = 'none';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        cards.forEach((el) => observer.observe(el));
+      }
+
+      // Spotlight volumétrico dinâmico
+      const spotCards = document.querySelectorAll('.tf-card, .consultorio-card, .journey-step, .review-card, .metric-item');
+      spotCards.forEach((card) => {
+        card.addEventListener('pointermove', (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--spot-x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--spot-y', `${e.clientY - rect.top}px`);
+        });
+      });
+
+      // Split-view slider do comparador de casos
+      const splitView = document.getElementById('splitView');
+      const splitRange = document.getElementById('splitRange');
+      if (splitView && splitRange) {
+        splitRange.addEventListener('input', (e) => {
+          splitView.style.setProperty('--split-pos', `${e.target.value}%`);
+        });
+      }
+
+      // Alternador de casos clínicos
+      const casesData = {
+        1: {
+          afterTitle: 'Harmonização Cerâmica Natural',
+          afterDesc: 'Textura periquimática sutil, fluorescência vítrea e integração gengival equilibrada.',
+          beforeTitle: 'Desgaste & Desalinhamento',
+          beforeDesc: 'Assimetria incisal, restaurações antigas escurecidas e fechamento de diastema.',
+          indication: 'Correção de forma e espaçamento com preparo minimamente invasivo.',
+          planning: 'Escaneamento 3D + Mockup pré-aprovado pelo paciente antes do preparo.',
+          material: 'Lentes cerâmicas em dissilicato de lítio (estratificação manual de cor).',
+          duration: '3 consultas (planejamento, preparo guiado e cimentação definitiva).'
+        },
+        2: {
+          afterTitle: 'Reabilitação Anterior Guiada',
+          afterDesc: 'Perfil de emergência protética idêntico ao elemento vizinho, sem sombra metálica.',
+          beforeTitle: 'Ausência de Incisivo Central',
+          beforeDesc: 'Perda dentária decorrente de fratura radicular profunda por trauma antigo.',
+          indication: 'Substituição de elemento unitário estético na zona do sorriso.',
+          planning: 'Tomografia volumétrica Cone Beam + Guia cirúrgico estereolitográfico.',
+          material: 'Implante de titânio conexão cônica + Coroa de zircônia pura.',
+          duration: 'Instalação em 1 sessão com provisório imediato + osseointegração.'
+        },
+        3: {
+          afterTitle: 'Sorriso Clareado & Mimético',
+          afterDesc: 'Esmalte 5 tons mais claro com translucidez natural e margens seladas.',
+          beforeTitle: 'Pigmentação & Amálgama',
+          beforeDesc: 'Manchas de café e fumo associadas a restaurações metálicas escuras.',
+          indication: 'Rejuvenescimento dental sem desgastes de esmalte.',
+          planning: 'Registro de cor por espectrofotometria digital e profilaxia prévia.',
+          material: 'Clareamento conjugado (LED em clínica + moldeiras) e resinas nanoparticuladas.',
+          duration: '2 semanas de tratamento supervisionado.'
+        }
+      };
+
+      const caseBtns = document.querySelectorAll('[data-case-btn]');
+      caseBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          caseBtns.forEach((b) => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          const num = btn.dataset.caseBtn;
+          const d = casesData[num];
+          if (!d) return;
+
+          const elAfterTitle = document.getElementById('caseTitleAfter');
+          const elAfterDesc = document.getElementById('caseDescAfter');
+          const elBeforeTitle = document.getElementById('caseTitleBefore');
+          const elBeforeDesc = document.getElementById('caseDescBefore');
+          const elIndication = document.getElementById('caseTechIndication');
+          const elPlanning = document.getElementById('caseTechPlanning');
+          const elMaterial = document.getElementById('caseTechMaterial');
+          const elDuration = document.getElementById('caseTechDuration');
+
+          if (elAfterTitle) elAfterTitle.textContent = d.afterTitle;
+          if (elAfterDesc) elAfterDesc.textContent = d.afterDesc;
+          if (elBeforeTitle) elBeforeTitle.textContent = d.beforeTitle;
+          if (elBeforeDesc) elBeforeDesc.textContent = d.beforeDesc;
+          if (elIndication) elIndication.textContent = d.indication;
+          if (elPlanning) elPlanning.textContent = d.planning;
+          if (elMaterial) elMaterial.textContent = d.material;
+          if (elDuration) elDuration.textContent = d.duration;
+
+          if (splitRange && splitView) {
+            splitRange.value = 50;
+            splitView.style.setProperty('--split-pos', '50%');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
